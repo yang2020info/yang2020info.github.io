@@ -1,0 +1,31 @@
+<script src="octokit-rest.min.js"></script>
+<script>
+window.onload = function() {
+
+
+// Code from https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript/21152762#21152762
+const GET_params = {};
+if(location.search) {
+  location.search.substr(1).split("&").forEach(function(item) {
+    var s = item.split("="),
+        k = s[0],
+        v = s[1] && decodeURIComponent(s[1]); //  null-coalescing / short-circuit
+    //(k in qd) ? qd[k].push(v) : qd[k] = [v]
+    (GET_params[k] = GET_params[k] || []).push(v) // null-coalescing / short-circuit
+  });
+}
+
+console.log(GET_params);
+
+return;
+
+window.location.assign('https://github.com/login/oauth/authorize?scope=user:email&client_id=Iv1.33f1fcf610f0027e');
+
+const octokit = Octokit({
+  auth: '',
+  userAgent: 'Yang 2020 QR Code Manager',
+});
+
+
+};
+</script>
